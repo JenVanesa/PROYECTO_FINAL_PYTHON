@@ -1,0 +1,9 @@
+{% for post in posts %}
+    <p> {{ post.title }}</p>
+    <p> {{ post.author}}</p>
+{% endfor %}
+
+{% for categoria in categorias %}
+    <p> {{ categoria.title }}</p>
+    <p> {{ categoria.slug}}</p>
+{% endfor %}
