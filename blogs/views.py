@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views import generic
 
 from blogs.models import Post, Categorias
 
@@ -16,4 +17,8 @@ def home_page(request):
       'destacados': featured    
    }
    return render (request, 'blogs/home_page.html', context=context)
+
+class PostDetailView(generic.DetailView):
+   modelo = Post
+
 
