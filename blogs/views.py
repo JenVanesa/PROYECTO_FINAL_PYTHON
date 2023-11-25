@@ -8,10 +8,12 @@ from blogs.models import Post, Categorias
 def home_page(request):
    posts= Post.objects.all()
    categorias= Categorias.objects.all()
+   featured = Post.objects.filter(featured= True)[:3]
 
    context = {
       'posts':posts,
-      'categorias':categorias      
+      'categorias':categorias,  
+      'destacados': featured    
    }
    return render (request, 'blogs/home_page.html', context=context)
 
