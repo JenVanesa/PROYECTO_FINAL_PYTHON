@@ -7,11 +7,17 @@ from django.utils import timezone
 from blogs.models import Post, Categorias
 
 
+
 # Create your views here.
 def home_page(request):
-   posts= Post.objects.all()
+   posts= Post.objects.filter(
+      pub_date__lte=timezone.now()
+   )
    categorias= Categorias.objects.all()
-   featured = Post.objects.filter(featured= True)[:3]
+   featured = Post.objects.filter(featured= True).filter(
+      pub_date__lte=timezone.now()
+   )[:3]
+   
 
    context = {
       'posts':posts,
@@ -41,6 +47,11 @@ class FeaturedListView(generic.ListView):
          pub_date__lte= timezone.now()
       )
 
+   def get_context_data(self, **kwargs):
+      context = super().get_context_data(**kwargs)   
+      context['categorias'] = Categorias.objects.all()  
+      return context 
+
       return query
    
 class CategoryListView(generic.ListView):
@@ -48,11 +59,12 @@ class CategoryListView(generic.ListView):
    template_name = 'blogs/featured_list.html'
 
    def get_queryset(self):
-      query = self.request.path.replace('categorias/', '')
+      query = self.request.path.replace('/categorias/', '')
       print(query)
-      posts = Post.objects.filter(featured= True).filter(
+      posts = Post.objects.filter(Categorias__slug=query).filter(
          pub_date__lte= timezone.now()
       )
+      return posts
       
    def get_context_data(self, **kwargs):
       context = super().get_context_data(**kwargs)   

@@ -17,9 +17,9 @@
               Categorias
             </a>
             <ul class="dropdown-menu">
-                {% for categoria in categorias %}
+                {% for Categoria in categorias %}
                     <li><a class="dropdown.item"
-                            href="{% url 'blogs:categoria' categoria:slug %}" >{{ categoria.title }}</a></li>
+                            href="{% url 'blogs:Categoria' Categoria.slug %}" >{{ Categorias.title }}</a></li>
                 {% endfor %}
             </ul>
           </li>
