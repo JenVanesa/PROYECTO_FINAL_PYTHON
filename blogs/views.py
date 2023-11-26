@@ -19,6 +19,6 @@ def home_page(request):
    return render (request, 'blogs/home_page.html', context=context)
 
 class PostDetailView(generic.DetailView):
-   modelo = Post
+  model = Post
 
 
