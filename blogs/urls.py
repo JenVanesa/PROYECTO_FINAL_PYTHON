@@ -6,4 +6,6 @@ app_name='blogs'
 urlpatterns = [
     path ('', views.home_page),
     path ('post/<slug:slug>', views.PostDetailView.as_view(), name='post'),
+    path ('featured/', views.FeaturedListView.as_view(), name='featured'),
+    path('categorias/<slug:slug>', views.CategoryListView.as_view(), name='Categoria'),
 ]
