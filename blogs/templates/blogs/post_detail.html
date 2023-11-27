@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load markdown_extras %}
 
 {% block content %} 
 
@@ -17,8 +16,8 @@
             </div>
             <hr class="d-none d-md-block my-2 mb-3 mt-2">
 
-            <p>{{ post.content | markdown | safe }}</p>
-
+            <p>{{ post.content }}</p>
+          
         </div>
 
     </main>
