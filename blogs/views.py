@@ -29,7 +29,7 @@ def home_page(request):
 
 class PostDetailView(generic.DetailView):
    model = Post
-   query = Post.objects.filter(featured= True).filter(
+   queryset = Post.objects.filter(featured= True).filter(
          pub_date__lte= timezone.now()
    )
 
